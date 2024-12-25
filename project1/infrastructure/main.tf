@@ -1,8 +1,9 @@
-resource "aws_instance" "example" {
-  ami           = "ami-12345678" # Use a dummy AMI ID
+resource "aws_instance" "be-server" {
+  ami           = "ami-34c14f4a" # Use a dummy AMI ID
   instance_type = "t2.micro"
+  count         = 1
 
   tags = {
-    Name = "be-app"
+    Name = "be-server-${count.index}"
   }
 }
