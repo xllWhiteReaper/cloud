@@ -20,5 +20,6 @@ provider "aws" {
   endpoints {
     ec2 = var.my_aws_endpoint
     s3  = var.my_aws_endpoint
+    iam  = var.my_aws_endpoint
   }
 }
