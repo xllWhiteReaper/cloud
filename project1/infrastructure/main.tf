@@ -16,11 +16,6 @@ resource "aws_s3_bucket" "file_uploads_bucket" {
   }
 }
 
-# resource "aws_s3_bucket_acl" "s3_acl" {
-#   bucket = aws_s3_bucket.file_uploads_bucket.id
-#   acl    = "public-read-write"
-# }
-
 resource "aws_iam_user" "s3_user" {
   name = "s3_user"
   tags = {
@@ -28,27 +23,27 @@ resource "aws_iam_user" "s3_user" {
   }
 }
 
-# # resource "aws_iam_access_key" "s3_user_key" {
-# #   user = aws_iam_user.s3_user.name 
-# # }
+resource "aws_iam_access_key" "s3_user_key" {
+  user = aws_iam_user.s3_user.name 
+}
 
-# # resource "aws_s3_bucket_policy" "my_bucket_policy" {
-# #   bucket = aws_s3_bucket.my_bucket.id
+resource "aws_s3_bucket_policy" "my_bucket_policy" {
+  bucket = aws_s3_bucket.file_uploads_bucket.id
 
-# #   policy = jsonencode({
-# #     Version = "2012-10-17"
-# #     Statement = [
-# #       {
-# #         Effect = "Allow"
-# #         Principal = {
-# #           AWS = aws_iam_user.s3_user.arn
-# #         }
-# #         Action = [
-# #           "s3:GetObject",
-# #           "s3:PutObject"
-# #         ]
-# #         Resource = "${aws_s3_bucket.my_bucket.arn}/*"
-# #       },
-# #     ]
-# #   })
-# # }
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          AWS = aws_iam_user.s3_user.arn
+        }
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject"
+        ]
+        Resource = "${aws_s3_bucket.file_uploads_bucket.arn}/*"
+      },
+    ]
+  })
+}
