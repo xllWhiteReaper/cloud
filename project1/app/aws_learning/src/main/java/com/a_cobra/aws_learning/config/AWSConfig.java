@@ -24,7 +24,8 @@ public class AWSConfig {
 
   @Bean
   public S3Client s3Client() {
-    return S3Client.builder()
+    S3Client myS3Client = S3Client.builder()
+        .forcePathStyle(true)
         .endpointOverride(URI.create(
             s3Endpoint))
         .region(Region.SA_EAST_1)
@@ -33,5 +34,7 @@ public class AWSConfig {
                 awsId,
                 awsSecret)))
         .build();
+
+    return myS3Client;
   }
 }

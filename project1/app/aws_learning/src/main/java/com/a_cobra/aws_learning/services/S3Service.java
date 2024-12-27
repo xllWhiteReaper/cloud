@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 @Service
@@ -35,6 +37,20 @@ public class S3Service {
       // Was not able to upload the file
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
           .body("Error uploading the file:\n" + e.getMessage());
+    }
+  }
+
+  public ResponseEntity<byte[]> findFile(String fileName) {
+    GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+        .bucket(bucketName)
+        .key(fileName)
+        .build();
+
+    try (ResponseInputStream<?> inputStream = s3Client.getObject(getObjectRequest)) {
+      return ResponseEntity.ok(inputStream.readAllBytes()); // or process as needed
+    } catch (Exception e) {
+      // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+      return ResponseEntity.notFound().build();
     }
   }
 }
