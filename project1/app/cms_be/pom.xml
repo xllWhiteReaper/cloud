@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.a_cobra</groupId>
-	<artifactId>aws_learning</artifactId>
+	<artifactId>cms_be</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api</name>
 	<description>Simple API to test the basic functionalities of an AWS integration with a backend service</description>
