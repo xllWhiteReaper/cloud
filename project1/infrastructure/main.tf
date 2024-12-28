@@ -10,9 +10,9 @@ resource "aws_instance" "be-server" {
 
 # This will work for the backend 
 resource "aws_s3_bucket" "file_uploads_bucket" {
-  bucket = "file-uploads"
+  bucket = "cms-be"
   tags = {
-    Name = "MyAuthenticatedFilesBucket"
+    Name = "MyAuthenticatedBEBucket"
   }
 }
 
@@ -52,7 +52,7 @@ resource "aws_s3_bucket_policy" "my_bucket_policy" {
 
 # This will be for the frontend
 resource "aws_s3_bucket" "app_host_bucket" {
-  bucket = "my-files-app"
+  bucket = "cms-fe"
   tags = {
     Name = "MyHostBucket"
   }

@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,8 @@ public class S3Service {
   @Autowired
   S3Client s3Client;
 
-  private final String bucketName = "file-uploads";
+  @Value("{aws.s3.bucket}")
+  private String bucketName;
 
   public ResponseEntity<String> uploadFile(MultipartFile file) {
     String fileName = file.getOriginalFilename();
