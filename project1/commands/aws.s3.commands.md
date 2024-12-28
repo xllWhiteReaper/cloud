@@ -18,4 +18,8 @@ aws --profile localstack --endpoint-url=http://localhost:4566 s3 ls s3://your-bu
 aws --profile localstack --endpoint-url=http://localhost:4566 s3 cp /path/to/your/folder s3://my-bucket/ --recursive
 ```
 
-##
+## **Empty s3 Bucket**:
+
+```bash
+aws --profile localstack --endpoint-url=http://localhost:4566 s3 rm s3://your-bucket-name/ --recursive
+```

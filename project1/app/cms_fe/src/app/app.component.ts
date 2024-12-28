@@ -10,9 +10,22 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   date!: Date;
+  counter = 0;
 
   ngOnInit(): void {
     this.date = new Date();
+  }
+
+  increaseCounter() {
+    this.updateCounter(+1);
+  }
+
+  decreaseCounter() {
+    this.updateCounter(-1);
+  }
+
+  updateCounter(numberToAdd: number) {
+    this.counter += numberToAdd;
   }
 
   title = 'CMS';

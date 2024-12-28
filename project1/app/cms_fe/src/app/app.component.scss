@@ -6,3 +6,17 @@ nav {
   align-items: center;
   justify-content: space-evenly;
 }
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-size: 32px;
+  align-items: center;
+  .operation-button {
+    background-color: aquamarine;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+}

@@ -8,4 +8,12 @@
   </p>
 </nav>
 
+<main>
+  <div class="main-content">
+    <p (click)="increaseCounter()" class="operation-button">+</p>
+    <p>{{ counter }}</p>
+    <p (click)="decreaseCounter()" class="operation-button">-</p>
+  </div>
+</main>
+
 <router-outlet />

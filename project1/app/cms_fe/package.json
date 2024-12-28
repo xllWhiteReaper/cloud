@@ -6,6 +6,7 @@
     "start": "ng serve",
     "sto": "ng serve -o",
     "build": "ng build",
+    "build:localstack": "ng build --base-href http://localhost:4566/cms-fe/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:cms_fe": "node dist/cms_fe/server/server.mjs"
