@@ -78,3 +78,19 @@ resource "aws_s3_bucket_policy" "public_bucket_policy" {
     ]
   })
 }
+
+
+## Other modules
+module "db" {
+  source = "./modules/db"
+}
+
+output "dynamo_access_key_id" {
+  value     = module.db.dynamo_access_key_id
+  sensitive = true
+}
+
+output "dynamo_secret_access_key" {
+  value     = module.db.dynamo_secret_access_key
+  sensitive = true
+}

@@ -15,11 +15,12 @@ provider "aws" {
   region                      = "sa-east-1"
   access_key                  = "test"
   secret_key                  = "test"
-  s3_use_path_style = true
+  s3_use_path_style           = true
 
   endpoints {
-    ec2 = var.my_aws_endpoint
-    s3  = var.my_aws_endpoint
-    iam  = var.my_aws_endpoint
+    ec2      = var.my_aws_endpoint
+    s3       = var.my_aws_endpoint
+    iam      = var.my_aws_endpoint
+    dynamodb = var.my_aws_endpoint
   }
 }
