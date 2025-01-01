@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,8 @@ public class UsersService {
     userToCreate.setLast_name(createUserDto.getLast_name());
     userToCreate.setFirst_name(createUserDto.getFirst_name());
     userToCreate.setEmail(createUserDto.getEmail());
-    // String id =
+    UUID idUuid = UUID.randomUUID();
+    userToCreate.setId(idUuid.toString());
 
     PutItemEnhancedRequest<User> enhancedRequest = PutItemEnhancedRequest.builder(User.class)
         .item(userToCreate)
@@ -45,7 +47,6 @@ public class UsersService {
       return ResponseEntity.ok().body("User created successfully");
     } catch (Exception e) {
       final String errorMessage = "Error: " + e.getMessage();
-      System.out.println(errorMessage);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
     }
   }
@@ -66,7 +67,6 @@ public class UsersService {
 
       return ResponseEntity.ok(users);
     } catch (Exception e) {
-      System.out.println("Error: " + e.getMessage());
       // Return an empty list if an error occurs
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
     }
