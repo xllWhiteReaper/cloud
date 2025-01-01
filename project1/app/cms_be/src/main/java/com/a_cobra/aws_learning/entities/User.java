@@ -20,11 +20,6 @@ public class User implements Serializable {
   private Address address;
 
   @DynamoDbPartitionKey
-  public String getId() {
-    return this.id;
-  }
-
-  @DynamoDbPartitionKey
   public void setId(String id) {
     this.id = id;
   }

@@ -13,8 +13,6 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 @Configuration
-// @EnableDynamoDBRepositories(basePackages =
-// "com.baeldung.spring.data.dynamodb.repositories")
 public class DynamoDBConfig {
   @Value("${aws.endpoint}")
   private String awsEndpoint;
@@ -25,7 +23,7 @@ public class DynamoDBConfig {
   @Value("${aws.dynamo.credentials.secret}")
   private String dynamoSecret;
 
-  private final URI awsEndpointUri = URI.create(awsEndpoint);
+  private URI awsEndpointUri;
 
   private DynamoDbClient dynamoDbClient() {
     DynamoDbClient dynamoDbClient = DynamoDbClient.builder()
@@ -42,9 +40,11 @@ public class DynamoDBConfig {
 
   @Bean
   public DynamoDbEnhancedClient dynamoDbEnhancedClient() {
-    return DynamoDbEnhancedClient.builder()
+    awsEndpointUri = URI.create(awsEndpoint);
+    DynamoDbEnhancedClient dynamoDbEnhancedClient = DynamoDbEnhancedClient.builder()
         .dynamoDbClient(this
             .dynamoDbClient())
         .build();
+    return dynamoDbEnhancedClient;
   }
 }
