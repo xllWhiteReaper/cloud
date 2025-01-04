@@ -51,7 +51,6 @@ public class S3Service {
     try (ResponseInputStream<?> inputStream = s3Client.getObject(getObjectRequest)) {
       return ResponseEntity.ok(inputStream.readAllBytes()); // or process as needed
     } catch (Exception e) {
-      // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
       return ResponseEntity.notFound().build();
     }
   }
