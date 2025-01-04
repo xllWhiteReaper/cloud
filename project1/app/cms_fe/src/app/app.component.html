@@ -1,0 +1,19 @@
+<nav>
+  <h1>{{ title }}</h1>
+  <p>Hello {{ user }}, welcome back</p>
+  <p>
+    @if (date){
+    {{ date.toISOString().slice(0, 10) }}
+    } @else { ...Retrieving the date }
+  </p>
+</nav>
+
+<main>
+  <div class="main-content">
+    <p (click)="increaseCounter()" class="operation-button">+</p>
+    <p>{{ counter }}</p>
+    <p (click)="decreaseCounter()" class="operation-button">-</p>
+  </div>
+</main>
+
+<router-outlet />
